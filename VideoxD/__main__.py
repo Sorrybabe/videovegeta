@@ -66,14 +66,7 @@ async def init():
         @Calls.on_audio_playout_ended
         async def audio_ended(gc, source):
             print(f'audio ended')
-
-        @Calls.on_video_playout_ended
-        async def video_ended(gc, source):
-            print(f'video ended')
-
-        @Calls.on_playout_ended
-        async def media_ended(gc, source, media_type):
-            print(f'{media_type} ended')
+            await message.reply_text("Done")
         
    
     @bot.on_message(filters.command("repo") ) 
