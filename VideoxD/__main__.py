@@ -65,7 +65,22 @@ async def init():
             return await message.reply(e)
         @Calls.on_playout_ended
         async def media_ended(_, source, media_type):
-            await message.reply_text(f"Finished")
+            if que.empty():
+                await message.reply("No More Videos In Queue!\n\nLeaving Video Chat! xD")
+                return await Calls.stop()
+            else:
+                stuff = await que.get()
+                start = await message.reply("Starting to Stream the next video!")
+                try:
+                    await start.delete()
+                    video = await streamloop(stuff)
+                    await Calls.start_video(video, repeat=False)
+                    thumb = thumbnail(stuff)
+                    namee = title(stuff)
+                    return await message.reply_photo(photo = thumb, caption = f"Started Streaming!\n\n**Video🎥** : **__{namee}__**\n**Chat : {message.chat.title}**\n**Requested By : {message.from_user.mention}**")
+
+                except Exception as e:
+                    return await message.reply(e)
         
    
     @bot.on_message(filters.command("repo") ) 
