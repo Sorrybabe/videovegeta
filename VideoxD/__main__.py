@@ -21,6 +21,7 @@ async def init():
     print("User Client Started!")
     await bot.start()
     print("Bot Client Started!")
+    admins = 133
     @bot.on_message(filters.command("alive"))
     async def startxd(client, message):
         await message.reply("Yes I am Alive!,Who cares about someone else!")
