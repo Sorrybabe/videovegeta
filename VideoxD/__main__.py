@@ -63,24 +63,17 @@ async def init():
             await message.reply_photo(thumb, caption = f"Started Streaming!\n\n**Video🎥** : **__{namee}__**\n**Chat : {message.chat.title}**\n**Requested By : {message.from_user.mention}**")
         except Exception as e:
             return await message.reply(e)
-        @Calls.on_playout_ended
-        async def media_ended(_, source, media_type):
-            if que.empty():
-                await message.reply("No More Videos In Queue!\n\nLeaving Video Chat! xD")
-                return
-            else:
-                stuff = await que.get()
-                start = await message.reply("Starting to Stream the next video!")
-                try:
-                    await start.delete()
-                    video = await streamloop(stuff)
-                    await Calls.start_video(video, repeat=False)
-                    thumb = thumbnail(stuff)
-                    namee = title(stuff)
-                    return await message.reply_photo(photo = thumb, caption = f"Started Streaming!\n\n**Video🎥** : **__{namee}__**\n**Chat : {message.chat.title}**\n**Requested By : {message.from_user.mention}**")
+        @Calls.on_audio_playout_ended
+        async def audio_ended(gc, source):
+            print(f'audio ended')
 
-                except Exception as e:
-                    return await message.reply(e)
+        @Calls.on_video_playout_ended
+        async def video_ended(gc, source):
+            print(f'video ended')
+
+        @Calls.on_playout_ended
+        async def media_ended(gc, source, media_type):
+            print(f'{media_type} ended')
         
    
     @bot.on_message(filters.command("repo") ) 
