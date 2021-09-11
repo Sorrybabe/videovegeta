@@ -67,7 +67,7 @@ async def init():
         async def media_ended(_, source, media_type):
             if que.empty():
                 await message.reply("No More Videos In Queue!\n\nLeaving Video Chat! xD")
-                return await Calls.stop()
+                return
             else:
                 stuff = await que.get()
                 start = await message.reply("Starting to Stream the next video!")
