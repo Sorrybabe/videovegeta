@@ -63,7 +63,7 @@ async def init():
             await message.reply_photo(thumb, caption = f"Started Streaming!\n\n**Video🎥** : **__{namee}__**\n**Chat : {message.chat.title}**\n**Requested By : {message.from_user.mention}**")
         except Exception as e:
             return await message.reply(e)
-        @Calls.on_audio_playout_ended
+        @Calls.on_video_playout_ended
         async def audio_ended(gc, source):
             print(f'audio ended')
             await message.reply_text("Done")
