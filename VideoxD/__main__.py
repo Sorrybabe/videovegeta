@@ -65,7 +65,7 @@ async def init():
             return await message.reply(e)
         @Calls.on_playout_ended
         async def media_ended(_, source, media_type):
-            return await message.reply_text(f"Finished Media Type: {media_type}")
+            return await message.reply_text(f"Finished")
         
    
     @bot.on_message(filters.command("repo") ) 
