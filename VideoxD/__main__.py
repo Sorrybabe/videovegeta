@@ -21,11 +21,6 @@ async def init():
     print("User Client Started!")
     await bot.start()
     print("Bot Client Started!")
-    admins = []
-    admin_full = await bot.get_chat_members(chat_id = message.chat.id, filter = "administrators")
-    for admin in admin_full:
-        if admin.can_manage_voice_chats:
-            admins.append(admin.user.id)
     @bot.on_message(filters.command("alive"))
     async def startxd(client, message):
         await message.reply("Yes I am Alive!,Who cares about someone else!")
